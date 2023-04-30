@@ -1,8 +1,8 @@
 let arr = [1,2,3];
 
-// Find index of 3
+let index=null;
 
-let index = null;
-index = arr.findIndex(el => el === 3);
+index=arr.findIndex(el=>el===3) ;
 
-console.log(index);
+console.log(index)
+
