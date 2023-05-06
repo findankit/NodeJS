@@ -20,3 +20,16 @@ server.js
         routes eg. greeting.js
             controllers
             middleware
+
+
+
+Node js applications:
+--------------
+real time application - chatt
+audio/video streaming -
+ssh application - net, http
+email services
+cli - command line interface
+file handling
+web scrapping
+
