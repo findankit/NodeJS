@@ -2,32 +2,30 @@ require("./javascript/array");
 const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
-const greetingRoutes = require("./routes/greetings");
-const todoRouter = require("./routes/todo.routes");
-// app.
+const morgan = require('morgan');
+const router = require("./routes");
+const httpstatus = require('http-status');
+const { authorization } = require("./middlewares/authorization");
+const db = require("./config/db");
+
+
+
 app.use(bodyparser.json());
+app.use(morgan('dev'));
 
-// app.post("/greeting", function (req, res) {
-//   // query string
-//   let query = req.query;
-//   // console.log(query);
+app.use("/", router);
 
-//   // params
-//   // let params = req.params;
-//   // console.log(params);
 
-//   // body - json, form-data
-//   // let body = req.body;
-//   // console.log(body);
-
-//   res.send(`Hello ${query.user}.`);
-// });
-
-// app.get("/greetings", function (req, res) {
-//   res.send("Success!");
-// });
-app.use("/", todoRouter);
-// app.use("/api-v2/", greetingRoutes);
+app.use(function(error, req, res, next) {
+  console.log(error);
+  if(error) {
+    res.status(httpstatus.BAD_REQUEST).json({
+      success: false,
+      fromErrorHandler: true,
+      message: error.message
+    })
+  }
+})
 
 app.listen(3002, function () {
   console.log("server started 3002");

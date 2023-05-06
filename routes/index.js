@@ -1,13 +1,11 @@
 const express = require("express");
+const todoRouter = require("./todo.routes");
+const greetingRouter = require("./greetings");
+const userRouter = require("./user");
 const router = express.Router();
 
-
-router.get("/hello-world", function (req, res) {
-  res.send("Hello World");
-});
-
-router.post("/hello-world", function (req, res) {
-  res.send("Hello World");
-});
+router.use("/", todoRouter);
+router.use('/other', greetingRouter);
+router.use('/user', userRouter);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const express = require("express");
+const { authorization } = require("../middlewares/authorization");
 
 const todoRouter = express.Router();
 
@@ -30,7 +31,7 @@ let todoArray = [
   },
 ];
 
-todoRouter.post("/todo", function (req, res) {
+todoRouter.post("/todo", authorization, function (req, res) {
   let todoData = req.body;
   console.log(todoData);
 
